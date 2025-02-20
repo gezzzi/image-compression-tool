@@ -33,6 +33,7 @@ export default function ImageCompressor() {
   const [quality, setQuality] = useState(0.7)
   const [outputFormat, setOutputFormat] = useState<OutputFormat>('original')
   const [currentFormat, setCurrentFormat] = useState<OutputFormat>('original')
+  const [sizeWarning, setSizeWarning] = useState<string | null>(null)
 
   useEffect(() => {
     if (originalImage) {
@@ -69,6 +70,7 @@ export default function ImageCompressor() {
   const handleCompress = async () => {
     if (!originalImage) return
     setLoading(true)
+    setSizeWarning(null)
 
     try {
       const options = {
@@ -90,6 +92,11 @@ export default function ImageCompressor() {
       const convertedFile = new File([convertedBlob], `converted.${fileExtension}`, {
         type: mimeType
       })
+
+      // サイズチェックを追加
+      if (convertedFile.size > originalImage.size) {
+        setSizeWarning(`変換後のファイルサイズ（${(convertedFile.size / 1024 / 1024).toFixed(2)} MB）が元のサイズ（${(originalImage.size / 1024 / 1024).toFixed(2)} MB）より大きくなっています。フォーマットの変換による影響ですが、使用には問題ありません。`)
+      }
       
       setCompressedImage(convertedFile)
       setCompressedImageUrl(compressedURL)
@@ -196,6 +203,12 @@ export default function ImageCompressor() {
       {loading && (
         <div className="text-center py-4">
           <p>圧縮中...</p>
+        </div>
+      )}
+
+      {sizeWarning && (
+        <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-md">
+          <p className="text-yellow-800 text-sm">{sizeWarning}</p>
         </div>
       )}
 
