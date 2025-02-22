@@ -1,0 +1,10 @@
+---
+description: project全体のルール
+globs: /**
+---
+
+# Project Rules
+
+- Use next.js's app router
+- Use chadcn/ui
+- Separate the components
