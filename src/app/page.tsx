@@ -10,6 +10,7 @@ export default function Home() {
           </h1>
           <p className="text-gray-600 dark:text-gray-400">
             簡単な操作で画像を圧縮・変換できます。WebP、SVG、JPGなど、様々なフォーマットに対応。
+            デバイス内で圧縮するため、サーバーにアップロードすることなく、安全に圧縮できます。
           </p>
         </div>
         <ImageCompressor />
