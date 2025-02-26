@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import "./globals.css";
+import Script from 'next/script'
 
 const geist = Geist({
   subsets: ["latin"],
@@ -43,6 +44,15 @@ export default function RootLayout({
       </head>
       <body className={`${geist.variable} font-sans antialiased`}>
         {children}
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-D2PV9459LC" />
+        <Script id="google-analytics">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-D2PV9459LC');
+          `}
+        </Script>
       </body>
     </html>
   );
