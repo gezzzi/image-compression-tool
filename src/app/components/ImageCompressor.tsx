@@ -119,13 +119,18 @@ export default function ImageCompressor() {
       return currentFormat
     })()
     const fileName = `${baseName}-compressed.${extension}`
-    
-    const link = document.createElement('a')
-    link.href = compressedImageUrl
-    link.download = fileName
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
+
+    // FileReaderを使用してData URLを生成
+    const reader = new FileReader()
+    reader.onload = () => {
+      const link = document.createElement('a')
+      link.href = reader.result as string
+      link.download = fileName
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+    }
+    reader.readAsDataURL(compressedImage)
   }
 
   return (
@@ -245,7 +250,7 @@ export default function ImageCompressor() {
               <p className="text-center">サイズ: {compressedImage ? (compressedImage.size / 1024 / 1024).toFixed(2) : 0} MB</p>
               <button
                 onClick={handleDownload}
-                className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 w-full"
+                className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 w-full active:bg-green-700 touch-manipulation"
               >
                 ダウンロード
               </button>
