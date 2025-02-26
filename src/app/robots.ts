@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://image-compression-tool.vercel.app/sitemap.xml', // あなたのサイトのURLに変更してください
+    sitemap: 'https://image-compression-tool-orpin.vercel.app/sitemap.xml',
   }
 } 
