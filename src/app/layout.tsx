@@ -38,6 +38,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
+      <head>
+        <meta name="google-site-verification" content="v-5mBHaQPHryCAhOwqhA9MjkOtYrU6p3t9_sQSaFrv4" />
+      </head>
       <body className={`${geist.variable} font-sans antialiased`}>
         {children}
       </body>
