@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import "./globals.css";
 import Script from 'next/script'
+import { ThemeProvider } from 'next-themes'
 
 const geist = Geist({
   subsets: ["latin"],
@@ -38,12 +39,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja">
+    <html lang="ja" suppressHydrationWarning>
       <head>
         <meta name="google-site-verification" content="v-5mBHaQPHryCAhOwqhA9MjkOtYrU6p3t9_sQSaFrv4" />
       </head>
       <body className={`${geist.variable} font-sans antialiased`}>
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+        >
+          {children}
+        </ThemeProvider>
         <Script src="https://www.googletagmanager.com/gtag/js?id=G-D2PV9459LC" />
         <Script id="google-analytics">
           {`
