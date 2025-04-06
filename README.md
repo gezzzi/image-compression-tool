@@ -22,4 +22,4 @@
 ## Demo
 アプリケーションは以下のURLで公開しています：
 
-https://image-compression-tool-orpin.vercel.app/
+https://image-compression.techstepsite.com
